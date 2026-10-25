@@ -9,6 +9,8 @@
 <meta property="og:image" content="media/showreel.jpg">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#07070a">
+<link rel="alternate" hreflang="ro" href="https://horia9992.github.io/portofoliu/">
+<link rel="alternate" hreflang="en" href="https://horia9992.github.io/portofoliu/en/">
 <script data-goatcounter="https://horia.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <style>:root{color-scheme:dark;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
 <title>Horia Portofoliu</title>
@@ -47,6 +49,8 @@
   .links { display:flex; gap:36px; font-size:13px; letter-spacing:2px; text-transform:uppercase; }
   .links a { color:var(--muted); transition:color .2s; }
   .links a:hover, .links a.on { color:var(--fg); }
+  .links .lang { border:1px solid var(--line); border-radius:20px; padding:4px 10px; color:var(--fg); }
+  .mobile-menu .lang { font-size:28px; color:var(--gold); }
   .pill { display:inline-flex; align-items:center; gap:8px; border:1px solid var(--fg); padding:12px 22px; font-size:12px; letter-spacing:2px; text-transform:uppercase; border-radius:40px; transition:background .2s, color .2s; }
   .pill:hover { background:var(--fg); color:var(--bg); }
   .burger { display:none; width:44px; height:44px; border-radius:50%; border:1px solid var(--line); position:relative; }
@@ -307,7 +311,7 @@
   <div class="wrap">
     <a class="logo" href="#acasa">HORIA<span>.</span></a>
     <nav class="links" aria-label="Meniu">
-      <a href="#proiecte">Proiecte</a><a href="#servicii">Servicii</a><a href="#despre">Despre</a><a href="#contact">Contact</a>
+      <a href="#proiecte">Proiecte</a><a href="#servicii">Servicii</a><a href="#despre">Despre</a><a href="#contact">Contact</a><a class="lang" href="en/" hreflang="en" lang="en">EN</a>
     </nav>
     <a class="pill" href="#contact">Hai să lucrăm</a>
     <button class="burger" id="burger" aria-label="Deschide meniul" aria-expanded="false" aria-controls="mmenu"><i></i><i></i></button>
@@ -315,6 +319,7 @@
 </header>
 <div class="mobile-menu" id="mmenu" hidden>
   <a href="#proiecte">Proiecte</a><a href="#servicii">Servicii</a><a href="#despre">Despre</a><a href="#contact">Contact</a>
+  <a class="lang" href="en/" hreflang="en" lang="en">English</a>
   <small>WhatsApp · 0735 021 888</small>
 </div>
 
