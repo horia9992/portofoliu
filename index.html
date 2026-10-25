@@ -119,12 +119,35 @@
   .tab .n { opacity:.55; margin-left:6px; font-variant-numeric:tabular-nums; }
   .grid { display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:20px; grid-auto-flow:dense; }
   .card { position:relative; border-radius:14px; overflow:hidden; aspect-ratio:9/14; max-width:100%; text-align:left; animation:pop .5s cubic-bezier(.2,.8,.2,1) both; }
-  .card.wide { grid-column:span 2; aspect-ratio:auto; min-height:100%; }
+  .card.wide { grid-column:span 2; aspect-ratio:auto; min-height:100%; background:var(--surface); }
+  .card.wide.r { grid-column:3 / span 2; }
+  .card .ph.blur { filter:blur(34px) saturate(1.4); transform:scale(1.35); opacity:.55; }
+  .card.wide:hover .ph.blur { transform:scale(1.45); }
+  .card.wide::after { background:linear-gradient(90deg, rgba(7,7,10,.75), rgba(7,7,10,.25) 55%, rgba(7,7,10,.55)); }
+  .card.wide::before { content:""; position:absolute; inset:0; z-index:1; box-shadow:inset 0 0 0 1px rgba(255,255,255,.08); border-radius:inherit; pointer-events:none; }
+  .feat { position:absolute; inset:0; z-index:2; display:grid; grid-template-columns:minmax(0,1fr) auto; gap:24px; align-items:center; padding:26px 26px 26px 28px; }
+  .feat-text { min-width:0; display:flex; flex-direction:column; align-items:flex-start; }
+  .feat-text h3 { font-size:22px; }
+  .feat-text .client { font-family:var(--display); font-size:30px; line-height:1.05; text-transform:uppercase; color:var(--fg); margin-top:8px; letter-spacing:.5px; }
+  .feat-text h3 + .client { font-family:var(--body); font-size:13px; text-transform:none; color:var(--soft); margin-top:4px; letter-spacing:0; }
+  .feat-text p { color:var(--soft); font-size:13.5px; line-height:1.55; font-weight:300; margin:14px 0 0; display:-webkit-box; -webkit-line-clamp:4; -webkit-box-orient:vertical; overflow:hidden; }
+  .feat-cta { margin-top:18px; display:inline-flex; align-items:center; gap:8px; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:var(--gold); }
+  .feat-cta svg { width:10px; height:10px; }
+  .feat-phone { position:relative; height:100%; aspect-ratio:9/16; border-radius:12px; overflow:hidden; box-shadow:0 20px 50px rgba(0,0,0,.55), 0 0 0 1px rgba(255,255,255,.12); transition:transform .6s cubic-bezier(.2,.8,.2,1); }
+  .card.wide:hover .feat-phone { transform:translateY(-4px) scale(1.02); }
+  .card.wide .play { display:none; }
+  .ghead { grid-column:1/-1; display:flex; align-items:baseline; gap:20px; flex-wrap:wrap; padding:34px 0 6px; border-top:1px solid var(--line); }
+  .ghead:first-child { border-top:0; padding-top:0; }
+  .ghead h3 { font-family:var(--display); font-weight:400; font-size:34px; text-transform:uppercase; margin:0; letter-spacing:1px; }
+  .ghead h3::before { content:""; display:inline-block; width:10px; height:10px; border-radius:50%; background:var(--accent); margin-right:14px; vertical-align:middle; box-shadow:0 0 18px var(--accent); }
+  .ghead p { margin:0; color:var(--muted); font-size:13px; letter-spacing:.3px; }
   @keyframes pop { from { transform:translateY(18px) scale(.98); } to { transform:none; } }
   .card .ph { position:absolute; inset:0; transition:transform .7s cubic-bezier(.2,.8,.2,1); }
   .card:hover .ph { transform:scale(1.06); }
   .card .hover-vid { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:center 30%; }
   .card::after { content:""; position:absolute; inset:0; background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.88)); }
+  .card { box-shadow:inset 0 0 0 1px rgba(255,255,255,.05); transition:box-shadow .3s; }
+  .card:hover { box-shadow:inset 0 0 0 1px rgba(255,255,255,.18), 0 20px 50px rgba(0,0,0,.5); }
   .card .meta { position:absolute; left:20px; right:20px; bottom:18px; z-index:2; }
   .card .cat { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:var(--gold); }
   .card h3 { font-size:20px; font-weight:600; margin:6px 0 0; line-height:1.25; }
@@ -221,6 +244,7 @@
 
   @media (max-width:1100px) {
     .grid { grid-template-columns:repeat(3, minmax(0,1fr)); }
+    .card.wide.r { grid-column:2 / span 2; }
     .svc { grid-template-columns:repeat(2, minmax(0,1fr)); }
     .svc article:nth-child(2) { border-right:0; }
     .svc article:nth-child(3) { padding-left:0; }
@@ -240,7 +264,11 @@
     .tabs { flex-wrap:nowrap; overflow-x:auto; width:100%; scrollbar-width:none; margin-right:calc(-1 * var(--gutter-r)); padding-right:var(--gutter-r); }
     .tabs::-webkit-scrollbar { display:none; }
     .grid { grid-template-columns:repeat(2, minmax(0,1fr)); gap:12px; }
-    .card.wide { aspect-ratio:16/10; min-height:0; }
+    .card.wide, .card.wide.r { grid-column:1 / span 2; aspect-ratio:16/10; min-height:0; }
+    .feat { padding:14px; gap:12px; }
+    .feat-text .client { font-size:18px; } .feat-text h3 { font-size:15px; }
+    .feat-text p { display:none; } .feat-cta { margin-top:10px; font-size:10px; letter-spacing:1.5px; }
+    .ghead { padding:26px 0 2px; gap:4px 14px; } .ghead h3 { font-size:26px; } .ghead p { font-size:12px; }
     .card h3 { font-size:15px; } .card .client { font-size:12px; }
     .card .meta { left:14px; right:14px; bottom:14px; }
     .svc { grid-template-columns:1fr; }
@@ -272,7 +300,6 @@
     .reveal.below { transform:none; }
   }
 </style>
-
 </head>
 <body>
 <header class="nav" id="nav">
@@ -414,14 +441,14 @@
   const CATS = { reclame:'Reclame', ugc:'UGC cu AI', editare:'Editare video', modele:'Modele AI' };
   const CAT_SINGULAR = { reclame:'Reclamă', ugc:'UGC cu AI', editare:'Editare video', modele:'Model AI' };
   const PROJECTS = [
-    { cat:'reclame', title:'', client:'Astravia, supliment', dur:'04:06', wide:true, ratio:'9:16',
+    { cat:'reclame', title:'', client:'Astravia, supliment', dur:'04:06', wide:true,
       video:{ file:'media/astravia-complet.mp4', poster:'media/astravia-complet.jpg' },
       desc:'Reclama întreagă pentru Astravia: povestea, explicația produsului cu animații și îndemnul final. Personaje și scene generate cu AI, montaj și subtitrări animate.' },
     { cat:'ugc', title:'Astravia, hook 1', client:'Astravia, supliment', dur:'00:30', video:{ file:'media/astravia-hook-1.mp4', poster:'media/astravia-hook-1.jpg' },
       desc:'Una din cele trei variante de început testate pentru aceeași reclamă. Personaje generate cu AI, în stil UGC, cu subtitrări care țin atenția.' },
     { cat:'ugc', title:'Astravia, hook 2', client:'Astravia, supliment', dur:'00:32', video:{ file:'media/astravia-hook-2.mp4', poster:'media/astravia-hook-2.jpg' },
       desc:'A doua variantă de început pentru reclama Astravia, cu alt unghi de poveste, ca să vedem care oprește mai bine scroll-ul.' },
-    { cat:'ugc', title:'Astravia, hook 3', client:'Astravia, supliment', dur:'00:31', video:{ file:'media/astravia-hook-3.mp4', poster:'media/astravia-hook-3.jpg' },
+    { cat:'ugc', title:'Astravia, hook 3', client:'Astravia, supliment', dur:'00:31', wide:true, video:{ file:'media/astravia-hook-3.mp4', poster:'media/astravia-hook-3.jpg' },
       desc:'A treia variantă de început pentru reclama Astravia. Hook-urile se schimbă, restul reclamei rămâne la fel.' },
     { cat:'reclame', title:'', client:'Astravia, supliment', dur:'00:14', video:{ file:'media/astravia-doctor-hook-2.mp4', poster:'media/astravia-doctor-hook-2.jpg' },
       desc:'Început alternativ pentru reclama cu doctor AI: un bărbat singur în sufragerie, noaptea, apoi produsul explicat pe scurt.' },
@@ -433,7 +460,7 @@
       desc:'Aceeași reclamă, alt început: interviul de la poarta școlii, când vine să-și ia nepotul. Personaje și scene generate cu AI.' },
     { cat:'reclame', title:'', client:'Astravia, supliment', dur:'02:37', video:{ file:'media/astravia-ad-barbat-3.mp4', poster:'media/astravia-ad-barbat-3.jpg' },
       desc:'A treia variantă: interviul de la finalul unei curse în parc. Hook-ul se schimbă, restul reclamei rămâne la fel.' },
-    { cat:'reclame', title:'', client:'Astravia, supliment', dur:'03:28', video:{ file:'media/astravia-ad-femeie-1.mp4', poster:'media/astravia-ad-femeie-1.jpg' },
+    { cat:'reclame', title:'', client:'Astravia, supliment', dur:'03:28', wide:true, video:{ file:'media/astravia-ad-femeie-1.mp4', poster:'media/astravia-ad-femeie-1.jpg' },
       desc:'Reclamă completă, cu accent pe piele: o femeie care se privește în oglinda din baie și își vede pielea cu alți ochi. Generată cu AI.' },
     { cat:'reclame', title:'', client:'Astravia, supliment', dur:'03:26', video:{ file:'media/astravia-ad-femeie-2.mp4', poster:'media/astravia-ad-femeie-2.jpg' },
       desc:'A doua variantă a reclamei pentru piele, care pornește de pe telefon, seara, acasă. Personaje și scene generate cu AI.' },
@@ -451,11 +478,21 @@
       desc:'Reclamă în stil UGC filmată acasă: produsul arătat în folosire reală, prețul pe ecran și îndemn clar să comanzi.' },
     { cat:'reclame', title:'', client:'Slei, produse de curățenie', dur:'00:30', video:{ file:'media/slei-reclama.mp4', poster:'media/slei-reclama.jpg' },
       desc:'Reclamă de 30 de secunde pentru TikTok: text animat, culori puternice și produsele puse în prim-plan, cu adresa magazinului la final.' },
-    { cat:'reclame', title:'', client:'Slei, produse de curățenie', dur:'00:30', wide:true, ratio:'9:16', video:{ file:'media/slei-harta.mp4', poster:'media/slei-harta.jpg' },
+    { cat:'reclame', title:'', client:'Slei, produse de curățenie', dur:'00:30', wide:true, video:{ file:'media/slei-harta.mp4', poster:'media/slei-harta.jpg' },
       desc:'A doua reclamă Slei pentru TikTok: o hartă animată care duce privitorul din Popești-Leordeni direct la magazin, cu prețurile pe ecran.' },
-    { cat:'reclame', title:'', client:'Fabrică de mobilier din lemn masiv', dur:'00:34', video:{ file:'media/lemn-masiv.mp4', poster:'media/lemn-masiv.jpg' },
+    { cat:'reclame', title:'', client:'Slei, produse de curățenie', dur:'00:29', video:{ file:'media/slei-anim-1.mp4', poster:'media/slei-anim-1.jpg' },
+      desc:'Reclamă animată, „Ghicește prețul”: produsele apar pe rând cu prețul ascuns, iar la final totalul de 79 lei surprinde. Animație 2D, text pe ritm și adresa magazinului.' },
+    { cat:'reclame', title:'', client:'Slei, produse de curățenie', dur:'00:28', video:{ file:'media/slei-anim-2.mp4', poster:'media/slei-anim-2.jpg' },
+      desc:'„Cum arată un miros”: odorizante, spumant de baie și gel de duș, fiecare cu propria animație de parfum și prețul pe ecran. Animație 2D făcută de la zero.' },
+    { cat:'reclame', title:'', client:'Slei, produse de curățenie', dur:'00:29', video:{ file:'media/slei-anim-3.mp4', poster:'media/slei-anim-3.jpg' },
+      desc:'Reclamă de Moș Nicolae: ghetuțe la fereastră, zăpadă și produse Slei puse în ele, cu prețuri și o poveste de iarnă animată.' },
+    { cat:'reclame', title:'', client:'Slei, produse de curățenie', dur:'00:30', video:{ file:'media/slei-anim-4.mp4', poster:'media/slei-anim-4.jpg' },
+      desc:'„30 de secunde”: un cronometru numără cât durează curățenia în fiecare cameră cu produsele potrivite. Animație 2D cu iconițe și text animat.' },
+    { cat:'reclame', title:'', client:'Slei, produse de curățenie', dur:'00:30', video:{ file:'media/slei-anim-5.mp4', poster:'media/slei-anim-5.jpg' },
+      desc:'„Punctul pe i”: un joc de litere care compune numele Slei, produs cu produs, până la logo-ul final și adresa din Popești-Leordeni.' },
+    { cat:'reclame', title:'', client:'Fabrică de mobilier din lemn masiv', dur:'00:34', wide:true, video:{ file:'media/lemn-masiv.mp4', poster:'media/lemn-masiv.jpg' },
       desc:'Reclamă pentru o fabrică de lemn masiv: de la copacul din pădure și lemnul uscat cu abur până la mobila din casă, cu grafică animată peste cadre.' },
-    { cat:'editare', title:'Film de prezentare e-commerce', client:'Proiect e-commerce', dur:'01:55', wide:true, ratio:'9:16', video:{ file:'media/film-ecommerce.mp4', poster:'media/film-ecommerce.jpg' },
+    { cat:'editare', title:'Film de prezentare e-commerce', client:'Proiect e-commerce', dur:'01:55', wide:true, video:{ file:'media/film-ecommerce.mp4', poster:'media/film-ecommerce.jpg' },
       desc:'Film de prezentare cu montaj dinamic: tranziții, grafică animată și text pe ritm, care explică pas cu pas cum funcționează afacerea.' },
     { cat:'ugc', title:'', client:'Conținut cu model AI', dur:'00:15', video:{ file:'media/sfat-financiar.mp4', poster:'media/sfat-financiar.jpg' },
       desc:'Clip scurt în stil creator, cu un model AI în locuri de vacanță și un mesaj care ține oamenii până la final.' },
@@ -467,7 +504,7 @@
       desc:'Serie de selfie-uri în oglindă cu același model AI, în ținute diferite, gata de postat pe social media.' },
     { cat:'modele', title:'', client:'Conținut cu model AI', dur:'00:10', video:{ file:'media/clip-hf-ai.mp4', poster:'media/clip-hf-ai.jpg' },
       desc:'Clip generat cu AI: model în rochie verde, filmat ca un selfie cu telefonul, cu orașul noaptea în fundal.' },
-    { cat:'modele', title:'', client:'Conținut cu model AI', dur:'00:22', wide:true, ratio:'9:16', video:{ file:'media/clip-4414.mp4', poster:'media/clip-4414.jpg' },
+    { cat:'modele', title:'', client:'Conținut cu model AI', dur:'00:22', wide:true, video:{ file:'media/clip-4414.mp4', poster:'media/clip-4414.jpg' },
       desc:'Model AI într-un vlog de călătorie: plaje, insule și cadre de telefon care par filmate pe bune.' },
   ];
   const DESC = {
@@ -480,22 +517,45 @@
   const SHOWREEL = { cat:'reel', title:'Showreel 2026', client:'Astravia, cu doctor AI', dur:'02:33', ratio:'9:16', bg:'linear-gradient(160deg,#2a1210,#000)',
     video:{ file:'media/showreel.mp4', poster:'media/showreel.jpg' },
     desc:'Reclama Astravia cu un doctor generat cu AI care explică produsul, plus scene animate cu corpul uman, povești de familie și produsul în prim-plan.' };
-  const fmt = p => p.ratio ? (p.ratio === '16:9' ? 'v169' : 'v916') : (p.wide ? 'v169' : 'v916');
+  const fmt = p => p.ratio === '16:9' ? 'v169' : 'v916';
 
   const grid = document.getElementById('grid'), tabs = document.getElementById('tabs'), count = document.getElementById('count');
   const PLAY = '<svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>';
 
+  // Proiectele sunt grupate pe client; un card „wide” ocupă două coloane și arată clipul vertical întreg, cu text alături
+  const GROUPS = [
+    { name:'Astravia', sub:'Supliment · reclame complete, hook-uri și variante de test, generate cu AI', match:p => p.client.startsWith('Astravia') },
+    { name:'Goldclinic', sub:'Clinică medicală · video educative cu medicii, montaj și grafică animată', match:p => p.client.startsWith('Goldclinic') },
+    { name:'Slei', sub:'Produse de curățenie · reclame pentru TikTok, filmate și animate 2D', match:p => p.client.startsWith('Slei') },
+    { name:'Alte proiecte', sub:'UGC cu AI, editare video și conținut cu modele AI', match:() => true },
+  ];
   let current = PROJECTS;
+  const bgOf = p => p.video && p.video.poster ? `#000 url('${p.video.poster}') center 30%/cover` : p.bg;
+  function card(p, i, k, side) {
+    const label = `<div class="cat">${CAT_SINGULAR[p.cat]}</div>${p.title ? `<h3>${p.title}</h3>` : ''}<div class="client">${p.client}</div>`;
+    const body = p.wide
+      ? `<div class="ph blur" style="background:${bgOf(p)}"></div>
+         <div class="feat"><div class="feat-text">${label}${p.desc ? `<p>${p.desc}</p>` : ''}<span class="feat-cta">Pornește clipul ${PLAY}</span></div><div class="feat-phone" style="background:${bgOf(p)}"></div></div>`
+      : `<div class="ph" style="background:${bgOf(p)}"></div><div class="meta">${label}</div>`;
+    return `
+      <button class="card${p.wide ? ' wide' + (side ? ' r' : '') : ''}${p.video && p.video.file ? ' has-video' : ''}" data-i="${i}" style="animation-delay:${k * 45}ms" aria-label="Pornește: ${p.title || p.client}">
+        ${body}
+        ${p.dur ? `<span class="dur">${p.dur}</span>` : ''}
+        <span class="play">${PLAY}</span>
+      </button>`;
+  }
   function render(filter) {
     const list = filter === 'toate' ? PROJECTS : PROJECTS.filter(p => p.cat === filter);
     current = list;
-    grid.innerHTML = list.map((p, i) => `
-      <button class="card${p.wide ? ' wide' : ''}${p.video && p.video.file ? ' has-video' : ''}" data-i="${i}" style="animation-delay:${i * 50}ms" aria-label="Pornește: ${p.title || p.client}">
-        <div class="ph" style="background:${p.video && p.video.poster ? `#000 url('${p.video.poster}') center 30%/cover` : p.bg}">${p.person ? '<div class="silhouette"' + (p.wide ? ' style="width:34%"' : '') + '></div>' : ''}</div>
-        ${p.dur ? `<span class="dur">${p.dur}</span>` : ''}
-        <span class="play">${PLAY}</span>
-        <div class="meta"><div class="cat">${CAT_SINGULAR[p.cat]}</div>${p.title ? `<h3>${p.title}</h3>` : ''}<div class="client">${p.client}</div></div>
-      </button>`).join('');
+    const used = new Set(); let html = '';
+    GROUPS.forEach(g => {
+      const items = list.map((p, i) => [p, i]).filter(([p, i]) => !used.has(i) && g.match(p));
+      if (!items.length) return;
+      items.forEach(([, i]) => used.add(i));
+      let w = 0; // cardurile late alternează stânga / dreapta
+      html += `<div class="ghead reveal"><h3>${g.name}</h3><p>${g.sub}</p></div>` + items.map(([p, i], k) => card(p, i, k, p.wide && (w++ % 2))).join('');
+    });
+    grid.innerHTML = html;
   }
   // Pe calculator, cardul cu video rulează fără sunet când treci cu mouse-ul peste el
   if (matchMedia('(hover: hover)').matches && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -504,7 +564,7 @@
       const p = current[+c.dataset.i];
       const v = document.createElement('video');
       Object.assign(v, { src: p.video.file, muted: true, loop: true, playsInline: true, preload: 'auto' });
-      v.className = 'hover-vid'; c.querySelector('.ph').appendChild(v); v.play().catch(() => {});
+      v.className = 'hover-vid'; (c.querySelector('.feat-phone') || c.querySelector('.ph')).appendChild(v); v.play().catch(() => {});
     });
     grid.addEventListener('pointerout', e => {
       const c = e.target.closest('.card.has-video'); if (!c || c.contains(e.relatedTarget)) return;
