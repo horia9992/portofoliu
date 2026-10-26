@@ -8,7 +8,7 @@
 <meta property="og:description" content="Ads, AI UGC, video editing and virtual characters.">
 <meta property="og:image" content="../media/showreel.jpg">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#07070a">
+<meta name="theme-color" content="#070611">
 <link rel="alternate" hreflang="ro" href="https://horia9992.github.io/portofoliu/">
 <link rel="alternate" hreflang="en" href="https://horia9992.github.io/portofoliu/en/">
 <script data-goatcounter="https://horia.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
@@ -304,9 +304,65 @@
     html { scroll-behavior:auto; }
     .reveal.below { transform:none; }
   }
+
+  /* Temă neon (2026-10-26): violet, meniu plutitor, accente roz-cyan și fundal animat */
+  :root { --bg:#070611; --surface:#120f22; --accent:#ff3d8d; --gold:#7cf3ff; --line:rgba(255,255,255,.1); }
+  .aurora { position:fixed; inset:-20%; z-index:0; pointer-events:none; filter:blur(70px); opacity:.85; }
+  .aurora i { position:absolute; width:62vmax; height:62vmax; border-radius:50%; mix-blend-mode:screen; will-change:transform; }
+  .aurora i:nth-child(1) { background:radial-gradient(circle, rgba(120,40,255,.6), transparent 62%); top:-12%; left:-8%; animation:au1 28s ease-in-out infinite alternate; }
+  .aurora i:nth-child(2) { background:radial-gradient(circle, rgba(255,61,141,.5), transparent 62%); top:18%; right:-18%; animation:au2 34s ease-in-out infinite alternate; }
+  .aurora i:nth-child(3) { background:radial-gradient(circle, rgba(124,243,255,.32), transparent 62%); bottom:-22%; left:18%; animation:au3 40s ease-in-out infinite alternate; }
+  .aurora i:nth-child(4) { background:radial-gradient(circle, rgba(255,138,61,.28), transparent 62%); bottom:5%; right:10%; width:40vmax; height:40vmax; animation:au4 24s ease-in-out infinite alternate; }
+  @keyframes au1 { to { transform:translate(34vw, 26vh) scale(1.25); } }
+  @keyframes au2 { to { transform:translate(-30vw, 34vh) scale(.85); } }
+  @keyframes au3 { to { transform:translate(22vw, -30vh) scale(1.3); } }
+  @keyframes au4 { to { transform:translate(-26vw, -22vh) scale(1.15); } }
+  .nav, main, footer, .marquee, .mobile-menu { position:relative; z-index:1; }
+  .nav { position:sticky; }
+  .nav .wrap { margin:14px auto 0; padding:10px 14px 10px 26px; border-radius:60px; background:rgba(18,15,34,.55); backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); border:1px solid var(--line); max-width:1120px; }
+  .nav.scrolled { background:transparent; border-color:transparent; backdrop-filter:none; -webkit-backdrop-filter:none; }
+  .hero { margin-top:-103px; padding-top:103px; }
+  .hero-glow { background:radial-gradient(ellipse 50% 70% at 75% 40%, rgba(255,61,141,.35), transparent 60%), radial-gradient(ellipse 45% 60% at 15% 15%, rgba(120,40,255,.35), transparent 60%); }
+  .pill { border-color:transparent; background:linear-gradient(90deg,#ff3d8d,#ff8a3d); color:#fff; }
+  .pill:hover { background:#fff; color:#15102a; }
+  h1 .red { color:transparent; background:linear-gradient(90deg,#ff3d8d,#ff8a3d,#7cf3ff); -webkit-background-clip:text; background-clip:text; }
+  h1 em { -webkit-text-stroke:1.5px rgba(255,255,255,.7); }
+  .eyebrow { color:#7cf3ff; } .eyebrow::before { background:#7cf3ff; }
+  .reel { border-radius:28px; box-shadow:0 40px 120px rgba(255,61,141,.3), 0 0 0 1px rgba(255,255,255,.15); }
+  .reel::before { background:conic-gradient(from 0deg, transparent, rgba(255,61,141,.5), transparent 30%, rgba(124,243,255,.4), transparent 60%); }
+  .track { color:rgba(255,255,255,.08); } .track .hl { color:rgba(255,255,255,.9); }
+  .tab[aria-pressed="true"] { background:linear-gradient(90deg,#ff3d8d,#ff8a3d); color:#fff; border-color:transparent; }
+  .grid { gap:18px; }
+  .card { border-radius:22px; box-shadow:inset 0 0 0 1px rgba(255,255,255,.1); }
+  .card:hover { box-shadow:inset 0 0 0 1px rgba(255,255,255,.3), 0 20px 60px rgba(255,61,141,.25); }
+  .card .cat, .lb-side .cat { color:#7cf3ff; }
+  .card .play { background:rgba(255,255,255,.18); }
+  .card .dur { border-radius:20px; background:rgba(18,15,34,.7); border:1px solid rgba(255,255,255,.15); }
+  .card.wide { border-radius:22px; background:rgba(18,15,34,.7); }
+  .card.wide::before { box-shadow:inset 0 0 0 1px rgba(255,255,255,.14); }
+  .feat-cta { color:#7cf3ff; }
+  .feat-phone { border-radius:18px; box-shadow:0 20px 50px rgba(0,0,0,.6), 0 0 0 1px rgba(255,255,255,.2); }
+  .ghead h3::before { background:linear-gradient(90deg,#ff3d8d,#7cf3ff); box-shadow:0 0 22px rgba(255,61,141,.8); }
+  .svc .ico { border-color:rgba(124,243,255,.4); color:#7cf3ff; }
+  .svc article:hover .ico { background:var(--accent); border-color:var(--accent); }
+  .svc li { background:rgba(255,255,255,.06); border:1px solid var(--line); }
+  .cta { border-radius:32px; background:radial-gradient(ellipse at 90% 0%, rgba(255,61,141,.55), transparent 60%), radial-gradient(ellipse at 10% 100%, rgba(124,243,255,.25), transparent 60%), rgba(18,15,34,.75); }
+  .btn-red { background:linear-gradient(90deg,#ff3d8d,#ff8a3d); }
+  .btn-red:hover { box-shadow:0 14px 40px rgba(255,61,141,.45); }
+  .mosaic { border-radius:28px; }
+  .lb-frame { box-shadow:0 30px 120px rgba(255,61,141,.25); }
+  .lb-ext { color:#7cf3ff; }
+  .links .lang { border-color:rgba(255,255,255,.2); }
+  @media (max-width:760px) {
+    .nav .wrap { margin:10px var(--gutter-r) 0 var(--gutter-l); padding:8px 8px 8px 18px; }
+    .hero { margin-top:-83px; padding-top:83px; }
+    .aurora { filter:blur(50px); }
+  }
+  @media (prefers-reduced-motion:reduce) { .aurora i { animation:none !important; } }
 </style>
 </head>
 <body>
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
 <header class="nav" id="nav">
   <div class="wrap">
     <a class="logo" href="#acasa">HORIA<span>.</span></a>
