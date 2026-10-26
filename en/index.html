@@ -124,7 +124,7 @@
   .tab .n { opacity:.55; margin-left:6px; font-variant-numeric:tabular-nums; }
   .grid { display:grid; grid-template-columns:repeat(4, minmax(0,1fr)); gap:20px; grid-auto-flow:dense; }
   .card { position:relative; border-radius:14px; overflow:hidden; aspect-ratio:9/14; max-width:100%; text-align:left; animation:pop .5s cubic-bezier(.2,.8,.2,1) both; }
-  .card.wide { grid-column:span 2; aspect-ratio:auto; min-height:100%; background:var(--surface); }
+  .card.wide { grid-column:span 2; aspect-ratio:1.32; min-height:100%; background:var(--surface); } /* 1.32 ≈ (2 coloane + spațiu) / înălțimea unui card 9:14, ca un rând doar cu carduri late să nu se turtească */
   .card.wide.r { grid-column:3 / span 2; }
   .card .ph.blur { filter:blur(34px) saturate(1.4); transform:scale(1.35); opacity:.55; }
   .card.wide:hover .ph.blur { transform:scale(1.45); }
@@ -393,7 +393,7 @@
         <video class="reel-bg" src="../media/showreel-teaser.mp4" poster="../media/showreel.jpg" muted autoplay loop playsinline aria-hidden="true"></video>
         <span class="rec">REC</span>
         <span class="play"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag"><span>Showreel 2026</span><b>04:06</b></span>
+        <span class="tag"><span>Showreel 2026</span><b>02:39</b></span>
       </button>
     </div>
   </section>
@@ -507,6 +507,8 @@
     { cat:'reclame', title:'', client:'Astravia, supplement', dur:'04:06', wide:true,
       video:{ file:'../media/astravia-complet.mp4', poster:'../media/astravia-complet.jpg' },
       desc:'The full Astravia ad: the story, the product explained with animations and the final call to action. AI-generated characters and scenes, editing and animated captions.' },
+    { cat:'reclame', title:'', client:'Astravia, supplement', dur:'02:18', wide:true, video:{ file:'../media/astravia-gp-1.mp4', poster:'../media/astravia-gp-1.jpg' },
+      desc:'An AI-generated GP explains from his car what finally helped his joint pain: inflammation shown with a 3D animation of the cell membrane, the low dose and what the body does with it. Vlog style, animated captions.' },
     { cat:'reclame', title:'', client:'Astravia, supplement', dur:'02:33', video:{ file:'../media/showreel.mp4', poster:'../media/showreel-doctor.jpg' },
       desc:'The Astravia ad with an AI-generated doctor explaining the product, plus animated scenes of the human body, family stories and the product in close-up.' },
     { cat:'reclame', title:'', client:'Astravia Joint Comfort', dur:'01:23', wide:true, video:{ file:'../media/astravia-joint-3am.mp4', poster:'../media/astravia-joint-3am.jpg' },
@@ -515,6 +517,8 @@
       desc:'Second variant of the pixel-art ad: it starts in the kitchen, with “stamina” dropping after 5 minutes on her feet, then the explanation from inside the joint and the product.' },
     { cat:'reclame', title:'', client:'Astravia Joint Comfort', dur:'01:27', video:{ file:'../media/astravia-joint-morning.mp4', poster:'../media/astravia-joint-morning.jpg' },
       desc:'Third variant: morning, “loading” on the edge of the bed, then free radicals after 40, the shield switched on and the progress in weeks 4-8. Retro game style, animated with AI.' },
+    { cat:'reclame', title:'', client:'Astravia, supplement', dur:'02:40', wide:true, video:{ file:'../media/astravia-gp-2.mp4', poster:'../media/astravia-gp-2.jpg' },
+      desc:'“The confession”: the GP admits he got joint pain advice wrong for 30 years and explains what he would recommend today. AI-generated character, shot like a vlog from the car at sunset.' },
     { cat:'reclame', title:'', client:'Astravia Joint Comfort', dur:'01:33', video:{ file:'../media/astravia-song-1.mp4', poster:'../media/astravia-song-1.jpg' },
       desc:'Musical hook in retro game style: the knee that “throbs” at night, the physio and everything tried with no effect, then the explanation from inside the joint and Astravia. Sung lyrics over pixel-art animation.' },
     { cat:'reclame', title:'', client:'Astravia Joint Comfort', dur:'01:28', wide:true, video:{ file:'../media/astravia-song-2.mp4', poster:'../media/astravia-song-2.jpg' },
@@ -597,9 +601,9 @@
     modele:'A virtual character with a consistent face and style from one post to the next. Showcase material, no explicit content.',
   };
   const SAMPLE = { v169:'../media/proba-orizontal', v916:'../media/proba-vertical' }; // .webm + .mp4
-  const SHOWREEL = { cat:'reel', title:'Showreel 2026', client:'Astravia, supplement', dur:'04:06', ratio:'9:16', bg:'linear-gradient(160deg,#2a1210,#000)',
-    video:{ file:'../media/astravia-complet.mp4', poster:'../media/astravia-complet.jpg' },
-    desc:'The full Astravia ad: the story, the product explained with animations and the final call to action. AI-generated characters and scenes, editing and animated captions.' };
+  const SHOWREEL = { cat:'reel', title:'Showreel 2026', client:'Astravia, supplement', dur:'02:39', ratio:'9:16', bg:'linear-gradient(160deg,#2a1210,#000)',
+    video:{ file:'../media/astravia-gp-3.mp4', poster:'../media/astravia-gp-3.jpg' },
+    desc:'A patient asked her GP why nobody fixes joint pain, and his answer surprised her. AI-generated doctor, shot like a vlog from the car, with animated captions and the Astravia capsule in close-up.' };
   const fmt = p => p.ratio === '16:9' ? 'v169' : 'v916';
 
   const grid = document.getElementById('grid'), tabs = document.getElementById('tabs'), count = document.getElementById('count');
