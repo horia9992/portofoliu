@@ -360,6 +360,14 @@
     .aurora { filter:blur(50px); }
   }
   @media (prefers-reduced-motion:reduce) { .aurora i { animation:none !important; } }
+
+  /* Cinematic AD lângă showreel (2026-11-22) */
+  .reels { display:grid; grid-template-columns:1fr 1fr; gap:18px; min-width:0; }
+  .reels .reel { aspect-ratio:9/14; }
+  .reels .reel .tag { flex-direction:column; gap:4px; font-size:11px; letter-spacing:2px; }
+  .reels .reel .play { width:68px; height:68px; margin:-34px 0 0 -34px; }
+  @media (max-width:760px) { .reels .reel { order:0; aspect-ratio:9/14; } .reels { order:-1; } }
+  @media (max-width: 480px) { .reels { gap:10px; } .reels .reel .play { width:52px; height:52px; margin:-26px 0 0 -26px; } .reels .reel .tag { left:12px; right:12px; bottom:12px; font-size:10px; letter-spacing:1.5px; } .reels .rec { left:12px; top:12px; font-size:10px; } }
 </style>
 </head>
 <body>
@@ -389,12 +397,20 @@
         <h1><span class="line"><span>Povești</span></span><span class="line"><span><em>care</em> <span class="red">vând.</span></span></span></h1>
         <p class="sub">Reclame, UGC generat cu AI, editări video și personaje virtuale. Tot ce am creat, într-un singur loc.</p>
       </div>
-      <button class="reel" id="reel" aria-label="Pornește showreel-ul">
-        <video class="reel-bg" src="media/showreel-teaser.mp4" poster="media/showreel.jpg" muted autoplay loop playsinline aria-hidden="true"></video>
-        <span class="rec">REC</span>
-        <span class="play"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
-        <span class="tag"><span>Showreel 2026</span><b>02:40</b></span>
-      </button>
+      <div class="reels">
+        <button class="reel" id="reel" aria-label="Pornește showreel-ul">
+          <video class="reel-bg" src="media/showreel-teaser.mp4" poster="media/showreel.jpg" muted autoplay loop playsinline aria-hidden="true"></video>
+          <span class="rec">REC</span>
+          <span class="play"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+          <span class="tag"><span>Showreel 2026</span><b>02:40</b></span>
+        </button>
+        <button class="reel" id="cine" aria-label="Pornește reclama cinematică">
+          <video class="reel-bg" src="media/cinematic-teaser.mp4" poster="media/cinematic-ad.jpg" muted autoplay loop playsinline aria-hidden="true"></video>
+          <span class="rec">AI FILM</span>
+          <span class="play"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+          <span class="tag"><span>Cinematic AD</span><b>07:54</b></span>
+        </button>
+      </div>
     </div>
   </section>
 
@@ -612,6 +628,9 @@
   const SHOWREEL = { cat:'reel', title:'Showreel 2026', client:'Astravia, supliment', dur:'02:40', ratio:'9:16', bg:'linear-gradient(160deg,#2a1210,#000)',
     video:{ file:'media/astravia-gp-2.mp4', poster:'media/astravia-gp-2.jpg' },
     desc:'„Confesiunea”: medicul de familie recunoaște că 30 de ani a dat sfaturi greșite despre articulații și explică ce ar recomanda azi. Personaj generat cu AI, filmat ca un vlog din mașină, la apus.' };
+  const CINEMATIC = { cat:'reel', label:'Cinematic AD', title:'Cinematic AD', client:'Astravia, supliment', dur:'07:54', ratio:'9:16', bg:'linear-gradient(160deg,#2a1210,#000)',
+    video:{ file:'media/cinematic-ad.mp4', poster:'media/cinematic-ad.jpg' },
+    desc:'O seară de aniversare pe o terasă din Roma se termină la urgențe. Un mini-film dramatic, generat integral cu AI: medicul italian, întoarcerea acasă și ce schimbă familia după aceea. Filmat cinematic, cu personaje care rămân aceleași de la o scenă la alta.' };
   const fmt = p => p.ratio === '16:9' ? 'v169' : 'v916';
 
   const grid = document.getElementById('grid'), tabs = document.getElementById('tabs'), count = document.getElementById('count');
@@ -707,7 +726,7 @@
     lbFrame.innerHTML = m.html;
     const vid = lbFrame.querySelector('video');
     if (vid) { vid.muted = false; vid.play().catch(() => { vid.muted = true; vid.play().catch(() => {}); }); }
-    $('lbCat').textContent = p.cat === 'reel' ? 'Showreel' : CAT_SINGULAR[p.cat];
+    $('lbCat').textContent = p.label ? p.label : p.cat === 'reel' ? 'Showreel' : CAT_SINGULAR[p.cat];
     $('lbTitle').textContent = p.title || p.client;
     $('lbClient').textContent = p.title ? p.client : '';
     $('lbDesc').textContent = p.desc || DESC[p.cat] || '';
@@ -731,6 +750,7 @@
   }
   grid.addEventListener('click', e => { const c = e.target.closest('.card'); if (c) openLb(current, +c.dataset.i); });
   $('reel').addEventListener('click', () => openLb([SHOWREEL], 0));
+  $('cine').addEventListener('click', () => openLb([CINEMATIC], 0));
   $('lbClose').addEventListener('click', closeLb);
   $('lbPrev').addEventListener('click', () => show(lbIdx - 1));
   $('lbNext').addEventListener('click', () => show(lbIdx + 1));
